@@ -3,11 +3,11 @@
 		<head-top signin-up='home'>
 			<span slot='logo' class="head_logo" @click="reload">ele.me777</span>
 		</head-top>
-		<p>{{userName}}</p>
-		<p>{{userAge}}</p>
 		<p class="img-box">
 			<img src="../../images/activity.png">
 		</p>
+		<p>{{userName}}</p>
+		<p>{{userAge}}</p>
 		<!--<nav class="city_nav">
             <div class="city_tip">
                 <span>当前定位城市：</span>
