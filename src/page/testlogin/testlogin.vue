@@ -1,11 +1,14 @@
 <template>
-  	<div>
-        <head-top signin-up='home'>
-            <span slot='logo' class="head_logo"  @click="reload">ele.me777</span>
-        </head-top>
-        <p>{{userName}}</p>
-        <p>{{userAge}}</p>
-        <!--<nav class="city_nav">
+	<div>
+		<head-top signin-up='home'>
+			<span slot='logo' class="head_logo" @click="reload">ele.me777</span>
+		</head-top>
+		<p>{{userName}}</p>
+		<p>{{userAge}}</p>
+		<p class="img-box">
+			<img src="../../images/activity.png">
+		</p>
+		<!--<nav class="city_nav">
             <div class="city_tip">
                 <span>当前定位城市：</span>
                 <span>定位不准时，请在城市列表中选择</span>
@@ -40,59 +43,62 @@
                 </li>
             </ul>
         </section>-->
-    </div>
+	</div>
 </template>
 
 <script>
-import headTop from '../../components/testheader/testhead'
-import {testApi} from '../../service/testGetData'
+	import headTop from '../../components/testheader/testhead'
+	import { testApi } from '../../service/testGetData'
 
-export default {
-    data(){
-        return{
-        	userName: '',
-        	userAge: ''
-        }
-    },
+	export default {
+		data() {
+			return {
+				userName: '',
+				userAge: ''
+			}
+		},
 
-	mounted(){
-		// 测试接口
-		testApi().then(res => {
-            this.userName = res.name;
-            this.userAge = res.age;
-        })
+		mounted() {
+			// 测试接口
+			testApi().then(res => {
+				this.userName = res.name;
+				this.userAge = res.age;
+			})
 
-    },
+		},
 
-    components:{
-        headTop
-    },
+		components: {
+			headTop
+		},
 
-    computed:{
-        //将获取的数据按照A-Z字母开头排序
-//      sortgroupcity(){
-//          let sortobj = {};
-//          for (let i = 65; i <= 90; i++) {
-//              if (this.groupcity[String.fromCharCode(i)]) {
-//                  sortobj[String.fromCharCode(i)] = this.groupcity[String.fromCharCode(i)];
-//              }
-//          }
-//          return sortobj
-//      }
-    },
+		computed: {
+			//将获取的数据按照A-Z字母开头排序
+			//      sortgroupcity(){
+			//          let sortobj = {};
+			//          for (let i = 65; i <= 90; i++) {
+			//              if (this.groupcity[String.fromCharCode(i)]) {
+			//                  sortobj[String.fromCharCode(i)] = this.groupcity[String.fromCharCode(i)];
+			//              }
+			//          }
+			//          return sortobj
+			//      }
+		},
 
-    methods:{
-        //点击图标刷新页面
-        reload(){
-            window.location.reload();
-        }
-    },
-}
-
+		methods: {
+			//点击图标刷新页面
+			reload() {
+				window.location.reload();
+			}
+		},
+	}
 </script>
 
 <style lang="scss" scoped>
-    /*@import '../../style/mixin';
+	.img-box img {
+		max-width: 100%;
+		height: auto;
+	}
+	/*@import '../../style/mixin';
     .head_logo{
         left: 0.4rem;
         font-weight: 400;
@@ -175,5 +181,4 @@ export default {
             }
         }
     }*/
-
 </style>
