@@ -2,177 +2,42 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import mutations from './mutations'
 import actions from './action'
-//import ajax from '../config/ajax'
-
+import getters from './getters'
 
 Vue.use(Vuex)
 
 const state = {
-	level: '第一周', //活动周数
-	itemNum: 1, // 第几题
-	allTime: 0,  //总共用时
-	timer: '', //定时器
-	itemDetail: [{
-		"topic_id": 20,
-		"active_topic_id": 4,
-		"type": "ONE",
-		"topic_name": "题目一",
-		"active_id": 1,
-		"active_title": "欢乐星期五标题",
-		"active_topic_phase": "第一周",
-		"active_start_time": "1479139200",
-		"active_end_time": "1482163200",
-		"topic_answer": [{
-			"topic_answer_id": 1,
-			"topic_id": 20,
-			"answer_name": "答案aaaa",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 2,
-			"topic_id": 20,
-			"answer_name": "正确答案",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 3,
-			"topic_id": 20,
-			"answer_name": "答案cccc",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 4,
-			"topic_id": 20,
-			"answer_name": "答案dddd",
-			"is_standard_answer": 1
-		}]
-	}, {
-		"topic_id": 21,
-		"active_topic_id": 4,
-		"type": "MORE",
-		"topic_name": "题目二",
-		"active_id": 1,
-		"active_title": "欢乐星期五标题",
-		"active_topic_phase": "第一周",
-		"active_start_time": "1479139200",
-		"active_end_time": "1482163200",
-		"topic_answer": [{
-			"topic_answer_id": 5,
-			"topic_id": 21,
-			"answer_name": "答案A",
-			"is_standard_answer": 1
-		}, {
-			"topic_answer_id": 6,
-			"topic_id": 21,
-			"answer_name": "答案B",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 7,
-			"topic_id": 21,
-			"answer_name": "正确答案",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 8,
-			"topic_id": 21,
-			"answer_name": "答案D",
-			"is_standard_answer": 0
-		}]
-	}, {
-		"topic_id": 21,
-		"active_topic_id": 4,
-		"type": "MORE",
-		"topic_name": "题目三",
-		"active_id": 1,
-		"active_title": "欢乐星期五标题",
-		"active_topic_phase": "第一周",
-		"active_start_time": "1479139200",
-		"active_end_time": "1482163200",
-		"topic_answer": [{
-			"topic_answer_id": 9,
-			"topic_id": 21,
-			"answer_name": "测试A",
-			"is_standard_answer": 1
-		}, {
-			"topic_answer_id": 10,
-			"topic_id": 21,
-			"answer_name": "BBBBBB",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 11,
-			"topic_id": 21,
-			"answer_name": "CCCCCC",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 12,
-			"topic_id": 21,
-			"answer_name": "正确答案",
-			"is_standard_answer": 0
-		}]
-	}, {
-		"topic_id": 21,
-		"active_topic_id": 4,
-		"type": "MORE",
-		"topic_name": "题目四",
-		"active_id": 1,
-		"active_title": "欢乐星期五标题",
-		"active_topic_phase": "第一周",
-		"active_start_time": "1479139200",
-		"active_end_time": "1482163200",
-		"topic_answer": [{
-			"topic_answer_id": 13,
-			"topic_id": 21,
-			"answer_name": "正确答案",
-			"is_standard_answer": 1
-		}, {
-			"topic_answer_id": 14,
-			"topic_id": 21,
-			"answer_name": "A是错的",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 15,
-			"topic_id": 21,
-			"answer_name": "D是对的",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 16,
-			"topic_id": 21,
-			"answer_name": "C说的不对",
-			"is_standard_answer": 0
-		}]
-	}, {
-		"topic_id": 21,
-		"active_topic_id": 4,
-		"type": "MORE",
-		"topic_name": "题目五",
-		"active_id": 1,
-		"active_title": "欢乐星期五标题",
-		"active_topic_phase": "第一周",
-		"active_start_time": "1479139200",
-		"active_end_time": "1482163200",
-		"topic_answer": [{
-			"topic_answer_id": 17,
-			"topic_id": 21,
-			"answer_name": "错误答案",
-			"is_standard_answer": 1
-		}, {
-			"topic_answer_id": 18,
-			"topic_id": 21,
-			"answer_name": "正确答案",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 19,
-			"topic_id": 21,
-			"answer_name": "错误答案",
-			"is_standard_answer": 0
-		}, {
-			"topic_answer_id": 20,
-			"topic_id": 21,
-			"answer_name": "错误答案",
-			"is_standard_answer": 0
-		}]
-	}],
-	answerid: [], //答案id
+	latitude: '', // 当前位置纬度
+	longitude: '', // 当前位置经度
+	cartList: {}, // 加入购物车的商品列表
+	shopDetail: null, //商家详情信息
+	userInfo: null, //用户信息
+	shopid: null,//商铺id
+	remarkText: null,//可选备注内容
+	inputText: '',//输入备注内容
+	invoice: false,//开发票
+	newAddress: [], //确认订单页新的地址
+	searchAddress: null,//搜索并选择的地址
+	geohash: 'wtw3sm0q087',//地址geohash值
+	choosedAddress: null,//选择地址
+	addressIndex: null,//选择地址的索引值
+	needValidation: null,//确认订单时是否需要验证
+	cartId: null, //购物车id
+	sig: null,//购物车sig
+	orderParam: null,//订单的参数
+	orderMessage: null, //订单返回的信息
+	orderDetail: null, //订单详情
+	login: true,//是否登录
+	imgPath:null,//头像地址
+	removeAddress:[],//移除地址
+	addAddress:'',		//新增地址
+	question: null,//问题详情
+	cartPrice: null, //会员卡价格
 }
 
 export default new Vuex.Store({
 	state,
+	getters,
 	actions,
-	mutations
+	mutations,
 })

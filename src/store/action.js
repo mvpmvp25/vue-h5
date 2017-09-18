@@ -1,15 +1,29 @@
-//import ajax from '../config/ajax'
+import {
+	getUser
+	//getAddressList
+} from '../service/testGetData'
+import {
+	GET_USERINFO,
+	SAVE_ADDRESS
+} from './mutation-types.js'
 
 export default {
-	addNum({ commit, state }, id) {
-		//点击下一题，记录答案id，判断是否是最后一题，如果不是则跳转下一题
-		commit('REMBER_ANSWER', id);
-		if (state.itemNum < state.itemDetail.length) {
-			commit('ADD_ITEMNUM', 1);
-		}
+
+	async getUserInfo({
+		commit,
+		state
+	}) {
+		let res = await getUser();
+		commit(GET_USERINFO, res)
 	},
-	//初始化信息
-	initializeData({ commit }) {
-		commit('INITIALIZE_DATA');
-	}
+//	async saveAddress({
+//		commit,
+//		state
+//	}) {
+//
+//		if(state.removeAddress.length > 0) return;
+//
+//		let addres = await getAddressList(state.userInfo.user_id);
+//		commit(SAVE_ADDRESS, addres);	
+//	},
 }
