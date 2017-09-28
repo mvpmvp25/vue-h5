@@ -1,0 +1,26 @@
+@charset "utf-8";
+.app-header-box {
+    width: 100%;
+    height: $headerHeight;
+    max-width: $maxWidth;
+    background: $headerBgColor;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    .app-header-title{
+        line-height: $headerHeight;
+        font-size: $px * 16;
+        text-align: center;
+        color: $white;
+    }
+    .app-header-back {
+        width: $px * 38;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url($iconBack) no-repeat center center;
+        background-size: auto 60%;
+    }
+}
