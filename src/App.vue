@@ -23,6 +23,10 @@
 
 <style lang="scss">
 	@import './style/common';
+	body {
+		background: #eee;
+	}
+	
 	.router-fade-enter-active,
 	.router-fade-leave-active {
 		transition: opacity .3s;

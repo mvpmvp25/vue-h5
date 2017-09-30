@@ -2,14 +2,39 @@
 	<div>
 
 		<head-top go-back='true'></head-top>
+
+		<div class="app-content">
+
+			<section class="login-box login-form">
+				<div class="login-item login-mobile-icon">
+					<input class="clear-input login-input" type="text" placeholder="手机号码" />
+				</div>
+				<div class="login-item login-passkey-icon">
+					<input id="passKey" class="clear-input login-input no-line" type="password" data-skill="eye" placeholder="登录密码" />
+				</div>
+			</section>
+
+			<section class="login-btn">
+				<div class="btn lock">登录</div>
+			</section>
+
+			<section class="login-box">
+				<div class="login-turn">
+					<span class="left">一键注册</span>
+					<span class="right">忘记密码</span>
+				</div>
+			</section>
+
+		</div>
+
 		<!--<head-top signin-up='home'>
 			<span slot='logo' class="head_logo" @click="reload">ele.me777</span>
 		</head-top>
 		<p class="img-box">
 			<img src="../../images/activity.png">
 		</p>-->
-		<p>{{userName}}</p>
-		<p>{{userAge}}</p>
+		<!--<p>{{userName}}</p>
+		<p>{{userAge}}</p>-->
 		<!--<nav class="city_nav">
             <div class="city_tip">
                 <span>当前定位城市：</span>
@@ -49,7 +74,7 @@
 </template>
 
 <script>
-	import headTop from '../../components/testheader/testhead'
+	import headTop from '../../components/header/head'
 	import { testApi } from '../../service/testGetData'
 
 	export default {
@@ -87,6 +112,9 @@
 		},
 
 		methods: {
+			changeLoginWay() {
+				console.log("aa");
+			},
 			//点击图标刷新页面
 			reload() {
 				window.location.reload();
@@ -96,88 +124,65 @@
 </script>
 
 <style lang="scss" scoped>
-	/*@import '../../style/common';*/
-	/*@import '../../style/mixin';
-    .head_logo{
-        left: 0.4rem;
-        font-weight: 400;
-        @include sc(0.7rem, #fff);
-        @include wh(2.3rem, 0.7rem);
-        @include ct;
-    }
-    .city_nav{
-        padding-top: 2.35rem;
-        border-top: 1px solid $bc;
-        background-color: #fff;
-        margin-bottom: 0.4rem;
-        .city_tip{
-            @include fj;
-            line-height: 1.45rem;
-            padding: 0 0.45rem;
-            span:nth-of-type(1){
-                @include sc(0.55rem, #666);
-            }
-            span:nth-of-type(2){
-                font-weight: 900;
-                @include sc(0.475rem, #9f9f9f);
-            }
-
-        }
-        .guess_city{
-            @include fj;
-            align-items: center;
-            height: 1.8rem;
-            padding: 0 0.45rem;
-            border-top: 1px solid $bc;
-            border-bottom: 2px solid $bc;
-            @include font(0.75rem, 1.8rem);
-            span:nth-of-type(1){
-                color: $blue;
-            }
-            .arrow_right{
-                @include wh(.6rem, .6rem);
-                fill: #999;
-            }
-        }
-    }
-    #hot_city_container{
-        background-color: #fff;
-        margin-bottom: 0.4rem;
-    }
-    .citylistul{
-        li{
-            float: left;
-            text-align: center;
-            color: $blue;
-            border-bottom: 0.025rem solid $bc;
-            border-right: 0.025rem solid $bc;
-            @include wh(25%, 1.75rem);
-            @include font(0.6rem, 1.75rem);
-        }
-        li:nth-of-type(4n){
-            border-right: none;
-        }
-    }
-    .city_title{
-        color: #666;
-        font-weight: 400;
-        text-indent: 0.45rem;
-        border-top: 2px solid $bc;
-        border-bottom: 1px solid $bc;
-        @include font(0.55rem, 1.45rem, "Helvetica Neue");
-        span{
-            @include sc(0.475rem, #999);
-        }
-    }
-    
-    .letter_classify_li{
-        margin-bottom: 0.4rem;
-        background-color: #fff;
-        border-bottom: 1px solid $bc;
-        .groupcity_name_container{
-            li{
-                color: #666;
-            }
-        }
-    }*/
+	@import '../../style/param';
+	@import '../../style/input';
+	.login-box {
+		@extend %box;
+	}
+	
+	.login-form {
+		margin-top: $px * 10;
+		background: $white;
+		.login-item {
+			width: $mainWidth;
+			height: $px * 36;
+			margin: 0 auto;
+			position: relative;
+			&:before {
+				content: "";
+				width: 10%;
+				height: 100%;
+				display: block;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.login-input {
+				border-bottom: 1px #d9d9d9 solid;
+				padding-left: 10%;
+			}
+		}
+		.login-mobile-icon {
+			&:before {
+				background: url($iconMobile) no-repeat center center;
+				background-size: auto 50%;
+			}
+		}
+		.login-passkey-icon {
+			&:before {
+				background: url($iconLock) no-repeat center center;
+				background-size: auto 50%;
+			}
+		}
+	}
+	
+	.login-btn {
+		@extend %box;
+		margin-top: $px * 15;
+		.btn {
+			@extend %btn;
+		}
+		.btn.lock {
+			background: #C5C5C5;
+		}
+	}
+	
+	.login-turn {
+		width: $mainWidth;
+		margin: $px * 20 auto 0;
+		span {
+			font-size: $px * 12;
+			color: $mainColor;
+		}
+	}
 </style>

@@ -24,7 +24,6 @@ ul {
     font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "sans-serif", "arial", "宋体";
     font-weight: normal;
     font-style: normal;
-    color: $dark;
     margin: 0;
     padding: 0;
     color: $dark;
@@ -38,6 +37,10 @@ textarea {
     -webkit-appearance: none;
 }
 
+//input,
+//textarea {
+//  -webkit-user-select: text;
+//}
 dd,
 dl,
 dt,
