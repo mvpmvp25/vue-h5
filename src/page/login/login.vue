@@ -15,7 +15,7 @@
 			</section>
 
 			<section class="login-btn">
-				<div class="btn lock">登录</div>
+				<div class="btn lock" @click="changeName('fizz')">登录({{readName}})</div>
 			</section>
 
 			<section class="login-box">
@@ -74,8 +74,9 @@
 </template>
 
 <script>
-	import headTop from '../../components/header/head'
-	import { testApi } from '../../service/testGetData'
+	import headTop from '../../components/header/head';
+	import { testApi } from '../../service/testGetData';
+	import { inputClear } from '../../module/element';
 
 	export default {
 		data() {
@@ -90,7 +91,8 @@
 			testApi().then(res => {
 				this.userName = res.name;
 				this.userAge = res.age;
-			})
+			});
+			inputClear();
 
 		},
 
@@ -99,6 +101,9 @@
 		},
 
 		computed: {
+			readName: function() {
+				return this.userName;
+			},
 			//将获取的数据按照A-Z字母开头排序
 			//      sortgroupcity(){
 			//          let sortobj = {};
@@ -112,8 +117,8 @@
 		},
 
 		methods: {
-			changeLoginWay() {
-				console.log("aa");
+			changeName(_name) {
+				this.userName = _name;
 			},
 			//点击图标刷新页面
 			reload() {
@@ -123,7 +128,8 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<!--<style lang="scss" scoped>-->
+<style lang="scss">
 	@import '../../style/param';
 	@import '../../style/input';
 	.login-box {
