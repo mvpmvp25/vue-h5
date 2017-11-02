@@ -1,7 +1,7 @@
 import App from '../App'
 
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
-//const personal = r => require.ensure([], () => r(require('../page/personal/personal')), 'personal')
+const personal = r => require.ensure([], () => r(require('../page/personal/personal')), 'personal')
 
 export default [{
 	path: '/',
@@ -18,10 +18,10 @@ export default [{
 			component: login
 		},
 		// 个人中心
-		//		{
-		//			path: '/personal',
-		//			component: personal
-		//		},
+		{
+			path: '/personal',
+			component: personal
+		},
 
 	]
 }]

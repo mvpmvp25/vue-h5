@@ -21,7 +21,7 @@ module.exports = {
         env: {
             NODE_ENV: '"development"'
         },
-        port: 8005,// 端口号
+        port: 8012,// 端口号
         assetsSubDirectory: 'static',
         assetsPublicPath: '/', // 编译发布的根目录，可配置为资源服务器域名或 CDN 域名
         context: [ //代理路径
@@ -36,8 +36,7 @@ module.exports = {
 //          '/promotion',
 //          '/eus',
 //          '/payapi',
-            '/info',
-            '/user'
+//          '/api/'
         ],
         proxypath: 'http://127.0.0.1:8081/',// http://cangdu.org:8001/ http://127.0.0.1:8081/ // proxyTable 代理的接口（可跨域）
         // CSS Sourcemaps off by default because relative paths are "buggy"

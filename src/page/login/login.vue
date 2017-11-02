@@ -1,21 +1,21 @@
 <template>
 	<div>
 
-		<head-top go-back='true'></head-top>
+		<head-top go-back="hide" head-title="登陆"></head-top>
 
 		<div class="app-content">
 
 			<section class="login-box login-form">
 				<div class="login-item login-mobile-icon">
-					<input class="clear-input login-input" type="text" placeholder="手机号码" />
+					<input class="clear-input login-input" type="text" placeholder="手机号码" v-model="userMobile" />
 				</div>
 				<div class="login-item login-passkey-icon">
-					<input id="passKey" class="clear-input login-input no-line" type="password" data-skill="eye" placeholder="登录密码" />
+					<input id="passKey" class="clear-input login-input no-line" type="password" data-skill="eye" placeholder="登录密码" v-model="passWord" />
 				</div>
 			</section>
 
 			<section class="login-btn">
-				<div class="btn lock" @click="changeName('fizz')">登录({{readName}})</div>
+				<div class="btn lock" @click="login">登录</div>
 			</section>
 
 			<section class="login-box">
@@ -27,104 +27,66 @@
 
 		</div>
 
-		<!--<head-top signin-up='home'>
-			<span slot='logo' class="head_logo" @click="reload">ele.me777</span>
-		</head-top>
-		<p class="img-box">
-			<img src="../../images/activity.png">
-		</p>-->
-		<!--<p>{{userName}}</p>
-		<p>{{userAge}}</p>-->
-		<!--<nav class="city_nav">
-            <div class="city_tip">
-                <span>当前定位城市：</span>
-                <span>定位不准时，请在城市列表中选择</span>
-            </div>
-            <router-link :to="'/city/' + guessCityid" class="guess_city">
-                <span>{{guessCity}}</span>
-                <svg class="arrow_right">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
-                </svg>
-            </router-link>  
-        </nav>
-        <section id="hot_city_container">
-            <h4 class="city_title">热门城市</h4>
-            <ul class="citylistul clear">
-                <router-link  tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
-                    {{item.name}}
-                </router-link>  
-            </ul>
-        </section>
-        <section class="group_city_container">
-            <ul class="letter_classify">
-                <li v-for="(value, key, index) in sortgroupcity" :key="key"  class="letter_classify_li">
-                    <h4 class="city_title">{{key}}
-                        <span v-if="index == 0">（按字母排序）</span>
-                    </h4>
-                    <ul class="groupcity_name_container citylistul clear">
-                        <router-link  tag="li" v-for="item in value" :to="'/city/' + item.id" :key="item.id" class="ellipsis">
-                            {{item.name}}
+		<alert-tip v-if="showAlert" :showHide="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
 
-                        </router-link>  
-                    </ul>
-                </li>
-            </ul>
-        </section>-->
 	</div>
 </template>
 
 <script>
 	import headTop from '../../components/header/head';
-	import { testApi } from '../../service/testGetData';
+	import alertTip from '../../components/common/alertTip';
+	import { sendLogin } from '../../service/testGetData';
+	import { mapMutations } from 'vuex';
 	import { inputClear } from '../../module/element';
 
 	export default {
 		data() {
 			return {
-				userName: '',
-				userAge: ''
+				userMobile: "",
+				passWord: "",
+				token: "",
+				showAlert: false, //显示提示组件
+				alertText: null, //提示的内容
 			}
 		},
 
 		mounted() {
-			// 测试接口
-			testApi().then(res => {
-				this.userName = res.name;
-				this.userAge = res.age;
-			});
+
 			inputClear();
 
 		},
 
 		components: {
-			headTop
+			headTop,
+			alertTip
 		},
 
 		computed: {
-			readName: function() {
-				return this.userName;
-			},
-			//将获取的数据按照A-Z字母开头排序
-			//      sortgroupcity(){
-			//          let sortobj = {};
-			//          for (let i = 65; i <= 90; i++) {
-			//              if (this.groupcity[String.fromCharCode(i)]) {
-			//                  sortobj[String.fromCharCode(i)] = this.groupcity[String.fromCharCode(i)];
-			//              }
-			//          }
-			//          return sortobj
-			//      }
+
 		},
 
 		methods: {
-			changeName(_name) {
-				this.userName = _name;
+			...mapMutations([
+				'RECORD_TOKEN',
+			]),
+			async login() {
+				let _passWord = this.passWord == "Fizz4706" ? "ea59db20b192dd0a86cd17bb9ef1dbde" : this.passWord;
+				let res = await sendLogin(this.userMobile, _passWord);
+				if(res.resType == "00") {
+					this.token = res.token;
+					this.RECORD_TOKEN({
+						token: this.token
+					});
+					this.$router.push('personal');
+				} else {
+					this.showAlert = true;
+					this.alertText = res.msgContent;
+				}
 			},
-			//点击图标刷新页面
-			reload() {
-				window.location.reload();
+			closeTip() {
+				this.showAlert = false;
 			}
-		},
+		}
 	}
 </script>
 
