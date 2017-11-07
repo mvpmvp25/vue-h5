@@ -15,19 +15,19 @@
 			</section>
 
 			<section class="login-btn">
-				<div class="btn lock" @click="login">登录</div>
+				<div class="btn lock" @click="login">{{loginText}}</div>
 			</section>
 
 			<section class="login-box">
 				<div class="login-turn">
-					<span class="left">一键注册</span>
+					<span class="left">一键注册{{userMobile}}</span>
 					<span class="right">忘记密码</span>
 				</div>
 			</section>
 
 		</div>
 
-		<alert-tip v-if="showAlert" :showHide="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
+		<alert-tip v-if="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
 
 	</div>
 </template>
@@ -62,7 +62,9 @@
 		},
 
 		computed: {
-
+			loginText() {
+				return "登陆";
+			}
 		},
 
 		methods: {
