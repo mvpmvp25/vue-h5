@@ -8,7 +8,7 @@
  */
 
 let baseUrl = '';
-let routerMode = 'history'; // hash模式可以本地运行build出来的项目(直接打开index.html) history模式需要服务器
+let routerMode = 'hash'; // hash模式可以本地运行build出来的项目(直接打开index.html) history模式需要服务器
 let imgBaseUrl = 'http://images.cangdu.org/';
 
 if(process.env.NODE_ENV == 'development') {

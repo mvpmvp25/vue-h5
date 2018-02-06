@@ -20,7 +20,7 @@
 
 			<section class="login-box">
 				<div class="login-turn">
-					<span class="left">一键注册{{userMobile}}</span>
+					<span class="left" @click="testplus">一键注册{{userMobile}}</span>
 					<span class="right">忘记密码</span>
 				</div>
 			</section>
@@ -51,9 +51,7 @@
 		},
 
 		mounted() {
-
 			inputClear();
-
 		},
 
 		components: {
@@ -87,6 +85,52 @@
 			},
 			closeTip() {
 				this.showAlert = false;
+			},
+			testplus() {
+				console.log("cc");
+				var doAction = function() {
+					plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: [{
+							title: "拍照"
+						}, {
+							title: "手机相册"
+						}]
+					}, function(e) {
+						if(e.index == 1) {
+							plus.gallery.pick(function(e) {
+								for(var i in e.files) {
+									
+									plus.io.resolveLocalFileSystemURL(e.files[i], function(entry) {
+										alert(entry.toRemoteURL());
+									}, function(e) {
+										$.toast("读取文件错误：" + e.message);
+									});
+								}
+
+							}, function(e) {
+								//console.log("取消选择图片");
+							}, {
+								filter: "image",
+								multiple: true,
+								system: false
+							});
+						}
+						if(e.index == 2) {
+							alert(plus.os.name);
+						}
+					});
+				}
+
+				if(window.plus) {
+					setTimeout(function() { //解决callback与plusready事件的执行时机问题(典型案例:showWaiting,closeWaiting)
+						doAction();
+					}, 0);
+				} else {
+					document.addEventListener("plusready", function() {
+						doAction();
+					}, false);
+				}
 			}
 		}
 	}
