@@ -50,7 +50,6 @@
 <!--<style lang="scss" scoped>-->
 <style lang="scss">
 	@import '../../style/param';
-	@import '../../style/input';
 	.login-box {
 		@extend %box;
 	}

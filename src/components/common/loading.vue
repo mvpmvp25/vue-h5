@@ -1,66 +1,104 @@
- <template>
-	<div class="loading_container">
-	    <div class="load_img" :style="{backgroundPositionY: -(positionY%7)*2.5 + 'rem'}">
-	    </div>
-    	<svg class="load_ellipse" xmlns="http://www.w3.org/2000/svg" version="1.1">
-			<ellipse cx="26" cy="10" rx="26" ry="10" style="fill:#ddd;stroke:none;"></ellipse>
-		</svg>
+<template>
+
+	<div class="loading-pop">
+		<div class="loading-message">
+			<span class="loading-spinner"></span>
+		</div>
 	</div>
+
 </template>
 
 <script>
-    export default {
-    	data(){
-            return{
-                positionY: 0,
-                timer: null,
-            }
-        },
-        mounted(){
-        	this.timer = setInterval(() => {
-        		this.positionY ++;
-        	}, 600)
-        },
-        beforeDestroy(){
-        	clearInterval(this.timer);
-        }
-    }
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		mounted() {
+
+		},
+		beforeDestroy() {
+
+		}
+	}
 </script>
 
 <style lang="scss" scoped>
-    @import '../../style/mixin';
-	@keyframes load{
-		0%   {transform: translateY(0px);}
-		50%  {transform: translateY(-50px);}
-		100% {transform: translateY(0px);}
+	@import '../../style/param';
+	.loading-pop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 9999999;
+		width: 100%;
+		height: 100%;
+		/*background-color: rgba(0, 0, 0, 0.5);*/
 	}
-	@keyframes ellipse{
-		0%   {transform: scale(1);}
-		50%  {transform: scale(0.3);}
-		100% {transform: scale(1);}
-	}
-    .loading_container{
-    	position: fixed;
-    	top: 50%;
-    	left: 50%;
-    	transform: translate(-50%, -50%);
-    	@include wh(2.5rem, 2.5rem);
-    }
-    .load_img{
-    	@include wh(100%, 100%);
-    	background: url(../../images/icon_loading.png) no-repeat 0 0;
-    	background-size: 2.5rem auto;
-    	transform: translateY(0px);
-    	animation: load .6s infinite ease-in-out;
-    	position: relative;
-    	z-index: 11;
-    }
-	.load_ellipse{
+	
+	.loading-message {
 		position: absolute;
-		@include wh(2.6rem, 2rem);
-		top: 2.2rem;
-        left: 0.2rem;
-		z-index: 10;
-		animation: ellipse .6s infinite ease-in-out;
+		text-align: center;
+		left: 50%;
+		top: 30%;
+		margin-left: $px * -50;
+		width: $px * 100;
+		height: $px * 100;
+	}
+	
+	.loading-spinner {
+		display: inline-block;
+		width: $px * 30;
+		height: $px * 30;
+		border-radius: 50%;
+		animation: loading-rotate 1s step-end infinite;
+		background: url('data:image/svg+xml;charset=utf-8,<svg viewBox=\'0 0 120 120\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\'><defs><line id=\'l\' x1=\'60\' x2=\'60\' y1=\'7\' y2=\'27\' stroke=\'%236c6c6c\' stroke-width=\'11\' stroke-linecap=\'round\'/></defs><g><use xlink:href=\'%23l\' opacity=\'.27\'/><use xlink:href=\'%23l\' opacity=\'.27\' transform=\'rotate(30 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.27\' transform=\'rotate(60 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.27\' transform=\'rotate(90 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.27\' transform=\'rotate(120 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.27\' transform=\'rotate(150 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.37\' transform=\'rotate(180 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.46\' transform=\'rotate(210 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.56\' transform=\'rotate(240 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.66\' transform=\'rotate(270 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.75\' transform=\'rotate(300 60,60) \'/><use xlink:href=\'%23l\' opacity=\'.85\' transform=\'rotate(330 60,60) \'/></g></svg>');
+		top: 50%;
+		left: 50%;
+		margin-top: $px * -15;
+		margin-left: $px * -15;
+		position: absolute;
+	}
+	
+	@keyframes loading-rotate {
+		0% {
+			-webkit-transform: rotate(0);
+		}
+		8.33333333% {
+			-webkit-transform: rotate(30deg);
+		}
+		16.66666667% {
+			-webkit-transform: rotate(60deg);
+		}
+		25% {
+			-webkit-transform: rotate(90deg);
+		}
+		33.33333333% {
+			-webkit-transform: rotate(120deg);
+		}
+		41.66666667% {
+			-webkit-transform: rotate(150deg);
+		}
+		50% {
+			-webkit-transform: rotate(180deg);
+		}
+		58.33333333% {
+			-webkit-transform: rotate(210deg);
+		}
+		66.66666667% {
+			-webkit-transform: rotate(240deg);
+		}
+		75% {
+			-webkit-transform: rotate(270deg);
+		}
+		83.33333333% {
+			-webkit-transform: rotate(300deg);
+		}
+		91.66666667% {
+			-webkit-transform: rotate(330deg);
+		}
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
 	}
 </style>

@@ -1,43 +1,47 @@
 <template>
 	<div>
 
-		<head-top go-back="hide" head-title="登陆"></head-top>
+		<head-top go-back="show" head-title=""></head-top>
 
 		<div class="app-content">
 
+			<section class="welcome-cell">
+				<div class="welcome-img"></div>
+				<div class="welcome-title">欢迎回来</div>
+			</section>
+
 			<section class="login-box login-form">
-				<div class="login-item login-mobile-icon">
-					<input class="clear-input login-input" type="text" placeholder="手机号码" v-model="userMobile" />
+				<div class="login-item">
+					<input class="clear-input login-input" type="text" placeholder="输入手机号" v-model="userMobile" />
 				</div>
-				<div class="login-item login-passkey-icon">
-					<input id="passKey" class="clear-input login-input no-line" type="password" data-skill="eye" placeholder="登录密码" v-model="passWord" />
+				<div class="login-item login-password">
+					<input id="passKey" class="clear-input login-input" type="password" data-skill="eye" placeholder="登录密码" v-model="passWord" />
 				</div>
 			</section>
 
 			<section class="login-btn">
-				<div class="btn lock" @click="login">{{loginText}}</div>
+				<div class="btn" @click="login">{{loginText}}</div>
 			</section>
 
 			<section class="login-box">
-				<div class="login-turn">
-					<span class="left">一键注册{{userMobile}}</span>
-					<span class="right">忘记密码</span>
-				</div>
+				<div class="login-forget">忘记密码</div>
 			</section>
 
 		</div>
 
-		<alert-tip v-if="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
+		<alertdasdTip v-if="showAlert" @closeTip="closeTip" :alertText="alertText"></alertdasdTip>
+		<!--<loading v-if="showLoading"></loading>-->
 
 	</div>
 </template>
 
 <script>
 	import headTop from '../../components/header/head';
-	import alertTip from '../../components/common/alertTip';
 	import { sendLogin } from '../../service/testGetData';
 	import { mapMutations } from 'vuex';
-	import { inputClear } from '../../module/element';
+	import loading from '../../components/common/loading';
+	import alertdasdTip from '../../components/common/alert';
+	import { inputClear } from '../../module/input_clear';
 
 	export default {
 		data() {
@@ -45,8 +49,9 @@
 				userMobile: "",
 				passWord: "",
 				token: "",
-				showAlert: false, //显示提示组件
-				alertText: null, //提示的内容
+				showAlert: true, //显示提示组件
+				alertText: null //提示的内容
+				//showLoading: true,
 			}
 		},
 
@@ -58,7 +63,8 @@
 
 		components: {
 			headTop,
-			alertTip
+			loading,
+			alertdasdTip
 		},
 
 		computed: {
@@ -81,12 +87,11 @@
 					});
 					this.$router.push('personal');
 				} else {
-					this.showAlert = true;
-					this.alertText = res.msgContent;
+
 				}
 			},
 			closeTip() {
-				this.showAlert = false;
+
 			}
 		}
 	}
@@ -95,64 +100,68 @@
 <!--<style lang="scss" scoped>-->
 <style lang="scss">
 	@import '../../style/param';
-	@import '../../style/input';
+	$clearInputHeight: $px * 40;
+	@import '../../style/module/input_clear';
+	.welcome-cell {
+		@extend %box;
+		height: $px * 36;
+		margin: $px * 8 auto 0;
+		text-align: center;
+		.welcome-img {
+			width: $px * 28;
+			height: $px * 28;
+			margin-top: $px * 3;
+			vertical-align: middle;
+			display: inline-block;
+			background: url("../../img/icon/face.gif") no-repeat;
+			background-size: 100% 100%;
+		}
+		.welcome-title {
+			height: $px * 34;
+			line-height: $px * 34;
+			margin-left: $px * 4;
+			font-size: $px * 28;
+			color: $ashy;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	
 	.login-box {
 		@extend %box;
 	}
 	
 	.login-form {
-		margin-top: $px * 10;
+		margin-top: $px * 80;
 		background: $white;
 		.login-item {
-			width: $mainWidth;
-			height: $px * 36;
+			width: 85%;
+			height: $px * 44;
 			margin: 0 auto;
 			position: relative;
-			&:before {
-				content: "";
-				width: 10%;
-				height: 100%;
-				display: block;
-				position: absolute;
-				left: 0;
-				top: 0;
-			}
+			border-bottom: 1px #d9d9d9 solid;
 			.login-input {
-				border-bottom: 1px #d9d9d9 solid;
-				padding-left: 10%;
+				font-size: $px * 24;
+				color: $black;
 			}
 		}
-		.login-mobile-icon {
-			&:before {
-				background: url($iconMobile) no-repeat center center;
-				background-size: auto 50%;
-			}
-		}
-		.login-passkey-icon {
-			&:before {
-				background: url($iconLock) no-repeat center center;
-				background-size: auto 50%;
-			}
+		.login-password {
+			margin-top: $px * 26;
 		}
 	}
 	
 	.login-btn {
 		@extend %box;
-		margin-top: $px * 15;
+		margin-top: $px * 52;
 		.btn {
 			@extend %btn;
 		}
-		.btn.lock {
-			background: #C5C5C5;
-		}
 	}
 	
-	.login-turn {
-		width: $mainWidth;
+	.login-forget {
 		margin: $px * 20 auto 0;
-		span {
-			font-size: $px * 12;
-			color: $mainColor;
-		}
+		text-align: center;
+		font-size: $px * 16;
+		color: $ashy;
 	}
 </style>

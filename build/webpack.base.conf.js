@@ -45,17 +45,20 @@ module.exports = {
 			test: /\.json$/,
 			loader: 'json'
 		}, {
-			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/, // 处理图片文件
+			test: /\.(png|jpe?g|svg)(\?.*)?$/, // 处理图片文件
 			loader: 'url',
 			query: {
-				limit: 10000,
+				limit: 10000, // 小于10K的图片转成base64编码的dataURL字符串写到代码中
 				name: utils.assetsPath('img/[name].[ext]')
 			}
+		}, {
+			test: /\.gif$/, // gif图片不转为base64否则无法出现动画
+			loader: 'file'
 		}, {
 			test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/, // 处理字体文件
 			loader: 'url',
 			query: {
-				limit: 10000, //小于10K的图片转成base64编码的dataURL字符串写到代码中
+				limit: 10000, 
 				name: utils.assetsPath('fonts/[name].[hash:7].[ext]') // 其他的图片转移到静态资源文件夹
 			}
 		}]

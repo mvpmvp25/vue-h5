@@ -31,6 +31,10 @@ ul {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+body {
+    background: $bodyBgColor;
+}
+
 button,
 input,
 textarea {
@@ -87,22 +91,8 @@ input[disabled] {
     background: $lockBgColor !important;
 }
 
-.app-bg {
-    background: $bodyBgColor;
-}
-
-.no-line {
-    border: 0 !important;
-}
-
 .none {
     display: none !important;
 }
 
-.left {
-    float: left;
-}
-
-.right {
-    float: right;
-}
+.app-content {}

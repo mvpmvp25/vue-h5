@@ -14,13 +14,13 @@
         color: $dark;
     }
     .app-header-back {
-        width: $px * 38;
+        width: $px * 44;
         height: 100%;
         display: block;
         position: absolute;
         top: 0;
         left: 0;
-        background: url($iconBack) no-repeat center center;
-        background-size: auto 60%;
+        background: url("./img/icon/return.png") no-repeat center center;
+        background-size: auto 50%;
     }
 }

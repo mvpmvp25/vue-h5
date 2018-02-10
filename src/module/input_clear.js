@@ -1,9 +1,8 @@
 /**
  * 表单模块
- * created by LittleYellow/441980627@qq.com
  */
 
-import strModule from './string';
+import strModule from './string_util';
 
 export const inputClear = () => {
 	var options = {
@@ -47,7 +46,7 @@ export const inputClear = () => {
 				if(!isWriting) { // 插入图标节点
 					var iconEle = document.createElement("span");
 					iconEle.classList.add(options.iconClassName);
-					iconEle.addEventListener("touchstart", function() {
+					iconEle.addEventListener("touchstart", function() { // 清除内容
 						self.value = "";
 						self.focus();
 						iconRemove();
