@@ -24,7 +24,7 @@
 			</section>
 
 			<section class="login-box">
-				<div class="login-forget">忘记密码</div>
+				<div class="login-forget" @click="test">忘记密码</div>
 			</section>
 
 		</div>
@@ -49,7 +49,7 @@
 				userMobile: "",
 				passWord: "",
 				token: "",
-				showAlert: true, //显示提示组件
+				showAlert: false, //显示提示组件
 				alertText: null //提示的内容
 				//showLoading: true,
 			}
@@ -91,7 +91,11 @@
 				}
 			},
 			closeTip() {
-
+				this.showAlert = false;
+			},
+			test() {
+				this.alertText = "的叫大都护";
+				this.showAlert = true;
 			}
 		}
 	}

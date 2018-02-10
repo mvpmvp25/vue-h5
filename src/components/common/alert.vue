@@ -21,6 +21,12 @@
         mounted(){
       
         },
+        beforeDestroy() {
+			console.log('beforeDestroy 钩子执行...');
+		},
+		destroyed() {
+			console.log('destroyed 钩子执行...');
+		},
         props: ['alertText'],
         methods: {
             closeTip(){
