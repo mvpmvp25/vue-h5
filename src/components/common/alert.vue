@@ -1,4 +1,4 @@
- <template>
+<template>
     <div class="alet_container">
 	    <section class="tip_text_container">
             <div class="tip_icon">
@@ -15,13 +15,18 @@
     export default {
     	data(){
             return{
-                positionY: 0,
-                timer: null,
+            	
             }
         },
         mounted(){
       
         },
+        beforeDestroy() {
+			console.log('beforeDestroy 钩子执行...');
+		},
+		destroyed() {
+			console.log('destroyed 钩子执行...');
+		},
         props: ['alertText'],
         methods: {
             closeTip(){

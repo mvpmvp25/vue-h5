@@ -1,0 +1,98 @@
+@charset "utf-8";
+// 基础样式
+a,
+body,
+button,
+dd,
+dl,
+dt,
+em,
+font,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+li,
+p,
+textarea,
+ul {
+    font-size: $px * 12;
+    font-family: "Microsoft YaHei", "Helvetica Neue", "Helvetica", "sans-serif", "arial", "宋体";
+    font-weight: normal;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    color: $dark;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    background: $bodyBgColor;
+}
+
+button,
+input,
+textarea {
+    -webkit-appearance: none;
+}
+
+//input,
+//textarea {
+//  -webkit-user-select: text;
+//}
+dd,
+dl,
+dt,
+li,
+ul {
+    list-style-type: none;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: $placeholderColor;
+    font-weight: normal;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: $placeholderColor;
+    font-weight: normal;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: $placeholderColor;
+    font-weight: normal;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: $placeholderColor;
+    font-weight: normal;
+}
+
+input[disabled] {
+    background: $lockBgColor !important;
+}
+
+.none {
+    display: none !important;
+}
+
+.app-content {}

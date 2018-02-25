@@ -1,0 +1,117 @@
+@charset "utf-8";
+// 长度单位
+$px: 0.05rem;
+// 颜色
+$white: #FFFFFF;
+$gray: #999999;
+$ashy: #666666;
+$dark: #333333;
+$black: #000000;
+$mainColor: #FA7138;
+$lineColor: #d1d1d1;
+$lockBgColor: #C5C5C5;
+$placeholderColor: #dcdcdc;
+$headerBgColor: $white;
+$bodyBgColor: #fff;
+// 宽度/高度
+$maxWidth: 640px;
+$mainWidth: 93.75%;
+$headerHeight: 2.2rem;
+$gapWidth: 3.125%;
+$btnWidth: 84%;
+$iconWidth: 1rem;
+$iconHeight: 1rem;
+$tagWidth: 1.6rem;
+$tagHeight: 1rem;
+// 图标
+$iconClear: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADcElEQVRoQ+1Z71HbMBR/kgco3YBO0Jjn76QTlE5QOgFhgsIEhAmgE5ROQPguRbBBN2g6gKTeS+2c7djWk22Syx26y6c8Sb/f+69nAQe+xIHjhzcChQWXy+Wp935KPwA4EkJMytb13j8DwEoIsaDfycnJ0xjWH2QBY8zUOfcVAM4IdCSgFQA8SCmv0zT9Hbl3I96LgDFmYq29EUKQtgcv7/0iSZLLNE3JSlErioAx5sg59x0AZlG38IWvEPGaLw78IM61flf37ZjLOLIUK0mSfOG6FcsCBN4599jDzzmYm2RWUspPHJcKEtgD+IIQi0QngT2CL5NIu9yplQAFrLX28bV9PuRjFBNZlqVtcq0EtNZzALgIXbCj/68R8arprkYCueuYDnCXiDjXWp8DwN0QEt77H0mSzJxzdNZN21lSyg9NrtRIQClFrtNapBBxs28ICQKfZRkBXy+ttW8jUJct5LYI5O0BpcyutbZA6eJoS9QBce5tssIWAaXUvRCC+pvQ+oaI931INIDn1plbRKx0AVsEtNZ/IgpWNIkB4ElXK0R8X9ZshQDHjA1miSFRySZ96oyUkurCpumrENBaU6qiZi12cUhUZHJl/YywdoGpooQ6gQUAnMaiz+W7SHAIsq713v/KsozeH+tVIaCUMgMrbxNQ6BvsLYyeEHGT4usWaM3DLPX8F6qQKO8bUjPK55Tr0GsQaCQxFng6/I1AwJ326kKUXz9G+HtddO9BfNhpdJeFbEBQVxrJXbcSgwtaZytBDq2UovHfO2Yc9AFU30PdZetDpozDe/83y7LKBHAv7XS92EW08OF2mvGc3CpUPf25YgkOCdaDhtBprTuz0VhPyrolRnlSEgGGFdbaU0pdCCE2T0tm3JTFaHhFY8RFyIpRj/rcCoc7VilUpLUeWpl7GGVrywsiVj6WlCVCo8Vja+1zRFodA/DmDEqbSZJMeo0Wi1PysTp9FuLWhlFI5OCnoQl1cDpdBLW1dmckuOC3npRdqjPGHDvnHgZ2qxzrvEgpz0b9wFF7FvadXHDAtw5x2zazXKi+maxhrZ0LIT5zUIVk8gHvFVfr7CwUujh3q5n3/jw2yMnPhRD3Usp5H+AFtl4WaCKWD6roQ/dECEEdY32+9OS9X3/ollIuQtklpLzRCXAvHFtuNAuMDYx73sET+AegPz1PyuygCAAAAABJRU5ErkJggg==";
+$iconMobile: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABq0lEQVRoQ+1Z0U3DQAx9ngDYgA0YAdwF6AbABHQDygYwAe0EwAJ9ZYRuwAbABEauFNSGqueL0ggk+zc+n5/te0nuCf65yT/PH50BkDw2s7M+CiAiK1X97BKrGgDJKwBTAKddNtyz5t3jquq8Jm4VAJJPAK5LG5jZl4g8bPqZ2UREjkprATyq6iTgt3YJAyB5AYDBwK+qOt70JfkC4DK4XlV1GfGtATAD4OMzhM1Vtdjpqg4sFouliJw32ZvZW59I2rFHo5F3vGjhDrQA3KuqH+TejKTHu/OAXpwE0C5tdqAwbDlCpdOYI5QjtLsC+R4onZ3o82ShUqWShZKFkoW2/gfyc7o9EEmjSaOlCiSNJo0mje49BUmjJRLJr9Gk0X5pdKaqN6Wxq3lO8hnA+kp+iLvRmtyqfRPArpK19YFAWV3raqQil5vC4shf6cBJozy6ogngIwB67XIQACSrJCZV3bo0I2lRAAD6l5gqRT7P9YepourmBsD+RT4PTtJn+baikl1cDyOzNpmQHJvZVER6UembuGa2EhEXul2ODVv4cjcccWDHBDBwwX9t9w3Ij/pAtBOmugAAAABJRU5ErkJggg==";
+$iconLock: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACOUlEQVRoQ+1Zi20UMRB9rgDogA4gFZC3FUAFQAUcFRAqgA6ACiAN7IQKOCqAEkIFRk/aRYvj4LHvLneLPFIURevdeW9mPL8ErFzCyvGjEzi2B7sH/gsPmNlzAE8BPAbwsEDqGsDV9POJpP5ulp1CyMzOAXxwgL4N4E8Ar0l+aWXQTMDMZPHPrYqT916S/NjyrSYCZnYfwA8A+r0PURidkZRHqqSVwAbAu6WmGOOvEMKFYpvkNodiCrnzGOMmhHAvOaP78KIKPdBWyMZxvAohPEmUyYJZ4CmoiYglBvg6DIPuVJW0euDblHFmZZckdSfcMo7jNoTwaPkCyWo81S9IoZnFBOlbkgoft5jZewCvToUASSq3u8XMRPhNJ+A22eJgJoS6B2SfY17i0/eAmalJ06WrLjYVYaqKrJZCWc3V5LnS6AReuX9frUOJkwqivFok4SWgpq2qUJUQOp67aouXQFq4HPp3PrIleVb6yikTcGWlTuBfLo4xftfztGkrhcX83FMXDumBP1NWru/xkDgaAQ03wzD8lXIz7UeRwzEJ3BhOOoFb/HWQOxBj7B7wdqfdA7nQXH0IAbgm+WBJblVZaAL+bN55mtmNRVixCDgntIPcgQW4eWlb3YrnimGOtItAbgnlseCOZ1zLMheBPW+ivbxcc7aLgDQqjmOMF5mlrBeQ69y0JN541+1uAhMJNWj6L0z1EtaBXvOvZmFNYsVZeP5eFQEHiDs/0gncuckThd0D3QM7WmD1IfQbbvgzQMVetEcAAAAASUVORK5CYII=";
+// mui-popup模块
+$muiPopupBtnText: #028bff;
+
+//布局
+%box {
+    width: 100%;
+    max-width: $maxWidth;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+%sonBox {
+    width: 100%;
+    overflow: hidden;
+}
+
+%btn {
+    width: $btnWidth;
+    height: $px * 46;
+    line-height: $px * 46;
+    margin: 0 auto;
+    text-align: center;
+    font-size: $px * 18;
+    color: $white;
+    background: $mainColor;
+    border-radius: $px * 4;
+}
+
+%smallSquare {
+    height: 100%;
+    min-width: $px * 20;
+    min-height: $px * 20;
+    display: inline-block;
+}
+
+// 图标
+@mixin leftIconMobile {
+    width: $iconWidth;
+    height: $iconHeight;
+    display: inline-block;
+    background: url("../img/icon/icon_mobile.png") no-repeat center center;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: - $iconHeight / 2;
+}
+
+@mixin rightIconMobile {
+    width: $iconWidth;
+    height: $iconHeight;
+    display: inline-block;
+    background: url("../img/icon/icon_mobile.png") no-repeat center center;
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: - $iconHeight / 2;
+}
+
+// 标签
+@mixin leftTag {
+    width: $tagWidth;
+    height: $tagHeight;
+    line-height: $tagHeight;
+    display: inline-block;
+    color: $white;
+    text-align: center;
+    background: $gray;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: - $tagHeight / 2;
+}
+
+@mixin rightTag {
+    width: $tagWidth;
+    height: $tagHeight;
+    line-height: $tagHeight;
+    display: inline-block;
+    color: $white;
+    text-align: center;
+    background: $gray;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: - $tagHeight / 2;
+}
