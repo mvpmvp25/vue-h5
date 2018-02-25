@@ -21,7 +21,7 @@ module.exports = {
         env: {
             NODE_ENV: '"development"'
         },
-        port: 8012,// 端口号
+        port: 8015,// 端口号
         assetsSubDirectory: 'static',
         assetsPublicPath: '/', // 编译发布的根目录，可配置为资源服务器域名或 CDN 域名
         context: [ //代理路径
