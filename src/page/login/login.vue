@@ -85,7 +85,7 @@
 					this.RECORD_TOKEN({
 						token: this.token
 					});
-					this.$router.push('personal');
+					this.$router.push({ path: 'personal', query: { frompage: 'fewjij3' }});
 				} else {
 
 				}

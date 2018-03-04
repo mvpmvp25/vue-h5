@@ -7,6 +7,7 @@
 			<p>{{ userName }}</p>
 			<p>{{ userType }}</p>
 			<p>{{ appVersion }}</p>
+			<p>{{ frompage }}</p>
 		</div>
 	</div>
 </template>
@@ -20,7 +21,8 @@
 		data() {
 			return {
 				userName: "",
-				userType: ""
+				userType: "",
+				frompage: this.$route.query.frompage
 			}
 		},
 
