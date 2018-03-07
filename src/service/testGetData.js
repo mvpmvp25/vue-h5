@@ -25,3 +25,14 @@ export const getUser = () => fetch('app/rest/getMemberInfo', {
 export const getAppVersion = () => fetch('app/rest/getCardBinInfo', {
 	bankCardNo: "622848"
 });
+
+
+/**
+ * 测试
+ */
+
+export const testRegister = (userName, userPwd, userAge) => fetch('http://10.11.1.78:8037/member/register', {
+	userName,
+	userPwd,
+	userAge
+}, "POST");

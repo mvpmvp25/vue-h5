@@ -7,20 +7,34 @@
 			<p>{{ userName }}</p>
 			<p>{{ userType }}</p>
 			<p>{{ appVersion }}</p>
+
+      <scroller style="top: 44px"
+      :on-refresh="refresh"
+      :on-infinite="infinite">
+      <div v-for="(item, index) in items" class="row" :class="{'grey-bg': index % 2 == 0}">
+        {{ item }}
+      </div>
+    </scroller>
+
 		</div>
 	</div>
 </template>
 
 <script>
+import Vue from "vue";
+import VueScroller from "vue-scroller";
 import headTop from "../../components/header/head";
 import { mapState } from "vuex";
-import { getUser } from "../../service/testGetData";
+import { getUser, testRegister } from "../../service/testGetData";
+
+Vue.use(VueScroller);
 
 export default {
   data() {
     return {
       userName: "",
-      userType: ""
+      userType: "",
+      items: []
     };
   },
 
@@ -29,9 +43,17 @@ export default {
       this.userName = res.selUsersInfoListBeans[0].userName;
       this.userType = res.selUsersInfoListBeans[0].userType;
     });
+    testRegister("liuge", "123456", "27").then(res => {
+      console.log(res)
+    });
   },
 
   mounted() {
+    for (var i = 1; i <= 20; i++) {
+      this.items.push(i + " - keep walking, be 2 with you.");
+    }
+    this.top = 1;
+    this.bottom = 20;
     // getUser().then(res => {
     //   this.userName = res.selUsersInfoListBeans[0].userName;
     //   this.userType = res.selUsersInfoListBeans[0].userType;
@@ -46,7 +68,30 @@ export default {
     ...mapState(["appVersion"])
   },
 
-  methods: {}
+  methods: {
+    refresh(done) {//下拉刷新
+      console.log("refresh");
+      setTimeout(() => {
+        var start = this.top - 1;
+        for (var i = start; i > start - 10; i--) {
+          this.items.splice(0, 0, i + " - keep walking, be 2 with you.");
+        }
+        this.top = this.top - 10;
+        done();
+      }, 1500);
+    },
+    infinite(done) {// 上拉加载
+      console.log("infinite");
+      setTimeout(() => {
+        var start = this.bottom + 1;
+        for (var i = start; i < start + 10; i++) {
+          this.items.push(i + " - keep walking, be 2 with you.");
+        }
+        this.bottom = this.bottom + 10;
+        done();
+      }, 1500);
+    }
+  }
 };
 </script>
 
@@ -111,5 +156,36 @@ export default {
     font-size: $px * 12;
     color: $mainColor;
   }
+}
+
+.row {
+  width: 100%;
+  height: 50px;
+  padding: 10px 0;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  color: #444;
+  background-color: #fff;
+}
+.grey-bg {
+  background-color: #eee;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 44px;
+  width: 100%;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  z-index: 1000;
+  color: #666;
+}
+.header > .title {
+  font-size: 16px;
+  line-height: 44px;
+  text-align: center;
+  margin: 0 auto;
 }
 </style>
