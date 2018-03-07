@@ -2,7 +2,7 @@
 
 npm install
 
-npm run dev 或 npm run local
+npm run dev
 
 npm run build
 

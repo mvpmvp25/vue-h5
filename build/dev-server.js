@@ -37,19 +37,8 @@ compiler.plugin('compilation', function(compilation) {
 })
 
 var context = config.dev.context
-
-switch(process.env.NODE_ENV) {
-	case 'local':
-		var proxypath = 'http://localhost:8001';
-		break;
-	case 'online':
-		var proxypath = config.dev.proxypath;
-		break;
-	default:
-		var proxypath = config.dev.proxypath;
-}
 var options = {
-	target: proxypath,
+	target: config.dev.proxypath,
 	changeOrigin: true,
 }
 //  将 proxyTable 中的请求配置挂在到启动的 express 服务上
